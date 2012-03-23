@@ -5,10 +5,15 @@ EmberApp.Person = Ember.Object.extend({
   alder : 0
 });
 
-
-console.log("start lager personController med Gunnar");
+var person1 = EmberApp.Person.create({navn: "Gunnar", alder: 6});
+var person2 = EmberApp.Person.create({navn: "Lars", alder: 4});
 
 EmberApp.personController = Ember.ArrayController.create({
-  content : [EmberApp.Person.create({navn: "Gunnar", alder: 6}), EmberApp.Person.create({navn: "Ola", alder: 7})],
+  content : [person1, person2]
 });
-console.log("ferdig lager personController med Gunnar");
+
+
+setTimeout(function() {
+  person1.set("navn", "apen svinger seg i treet");
+  person2.set("alder", 1000);
+}, 5000);
