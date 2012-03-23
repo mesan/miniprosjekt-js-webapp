@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Ember Javascript som Webbapplikasjon</title>
+  <script src="script/lib/jquery-1.7.2.js"></script>
+  <script src="script/lib/ember-0.9.5.js"></script>
+  <script src="script/emberApp.js"></script>
+</head>
+<body>
+
+<script type="text/x-handlebars">
+
+  collection
+  <table>
+    <thead>
+    <tr>
+      <th>Navn</th>
+      <th>Alder</th>
+    </tr>
+    </thead>
+
+    <tbody>
+  {{#collection contentBinding="EmberApp.personController"}}
+    <tr>
+      <td>
+        {{content.navn}}
+      </td>
+      <td>
+        {{content.alder}}
+      </td>
+    </tr>
+
+  {{/collection}}
+    </tbody>
+  </table>
+
+
+<hr>
+  each
+  <table>
+    <thead>
+    <tr>
+      <th>Navn</th>
+      <th>Alder</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {{#each EmberApp.personController}}
+    <tr>
+      <td>
+       {{navn}}
+      </td>
+      <td>
+        {{alder}}
+      </td>
+    </tr>
+    {{/each}}
+    </tbody>
+
+  </table>
+
+
+</script>
+
+</body>
+</html>
