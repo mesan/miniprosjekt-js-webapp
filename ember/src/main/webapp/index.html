@@ -22,11 +22,11 @@
     </thead>
 
     <tbody>
-  {{#collection contentBinding="EmberApp.personController"}}
+  {{#collection contentBinding="PersonApp.personController"}}
     <tr>
       <td>
         {{content.navn}}
-      </td>
+        </td>
       <td>
         {{content.alder}}
       </td>
@@ -48,7 +48,7 @@
     </thead>
 
     <tbody>
-    {{#each EmberApp.personController}}
+    {{#each PersonApp.personController}}
     <tr>
       <td>
        {{navn}}
