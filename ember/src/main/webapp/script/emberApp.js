@@ -30,23 +30,20 @@ var person2 = PersonApp.Person.create({navn: "Lars", alder: 4});
 PersonApp.personController = Ember.ArrayController.create({
   content : [],
   self : null,
-  test : 'Test',
 
   init: function() {
-    console.log(this);
     self = this;
-    var personService = PersonApp.PersonService.create({url: "http://restapi.apphb.com/api/person"});
-    personService.hentAlle(self.settPersoner);
+    self.fyllModell();
   },
 
   settPersoner : function(personer) {
-    //Ember.ArrayController.pushObjects.apply(personer)
-    console.log(personer);
-    //self.set('content', personer);
-    self.pushObjects(personer);
-    console.log(self);
+    self.set('content', personer);
   },
-  personer : self.test
+
+  fyllModell : function() {
+    var personService = PersonApp.PersonService.create({url: "http://restapi.apphb.com/api/person"});
+    personService.hentAlle(self.settPersoner);
+  }
 });
 
 
