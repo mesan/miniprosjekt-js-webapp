@@ -12,6 +12,10 @@
             $.getJSON(url + '/' + id, callback);
         }
 
+        self.update = function (entity, callback) {
+            $.post(url, entity, callback);
+        }
+
         return self;
 
     }

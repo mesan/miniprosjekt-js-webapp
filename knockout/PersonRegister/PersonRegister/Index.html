@@ -2,16 +2,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Personregister</title>
+    <style type="text/css">
+    table thead th { text-align:left; }
+    </style>
 </head>
 <body>
 
 <div id="person" data-bind="if: personer">
-    <ol data-bind="foreach: personer">
-        <li><span data-bind="text: name"></span> (<em data-bind="text: age"></em>)</li>
-    </ol>
+    <table style="width: 600px">
+        <thead>
+            <tr><th>Navn</th><th>Alder</th><th></th></tr>
+        </thead>
+        <tbody data-bind="template: { name: templateName }">
+        </tbody>
+    </table>
 </div>
 
+<script type="text/html" id="personList">
+{{each personer}}
+<tr>
+            {{if $parent.selectedPersonId == ${id}}}
+            
+                <td><input type="text" value="${name}" /></td>
+                <td><input type="text" value="${age}" /></td>
+                <td><a href="#" data-bind="click: $parent.updatePerson">Lagre</a></td>
+            
+            {{else}}
+
+            <td>${name}</td>
+            <td>${age}</td>
+            <td><a href="#edit/${id}" data-bind="click: function() { $parent.selectedPersonId = ${id} }">Endre</a></td>
+
+            {{/if}}
+</tr>
+{{/each}}
+</script>
+
+<script type="text/html" id="editPerson">
+{{each personer}}
+        <tr>
+            <td><input type="text" value="${name}" /></td>
+            <td><input type="text" value="${age}" /></td>
+            <td><a href="#" data-bind="click: $parent.updatePerson">Lagre</a></td>
+        </tr>
+{{/each}}
+</script>
+
 <script data-main="Scripts/main" src="Scripts/Lib/require/require.js" language="javascript"></script>
+
+
+
 </body>
 
 </html>

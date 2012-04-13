@@ -1,17 +1,14 @@
 ﻿define([
-  "jQuery",
-   "Underscore",
-   "Knockout",
-   "ViewModels/PersonViewModel",
-   "Models/Person"
-], function ($, _, ko, PersonViewModel, Person) {
+    "jQuery",
+    "Underscore",
+    "Template",
+    "Knockout",
+    "ViewModels/PersonViewModel"
+], function ($, _, Template, ko, PersonViewModel) {
 
     function init() {
 
-        var person = new Person();
-        person.name = "Ola Normann";
-
-        var viewModel = new PersonViewModel(person);
+        var viewModel = new PersonViewModel();
 
         ko.applyBindings(viewModel, $("#person").get(0));
     }

@@ -1,4 +1,4 @@
-define(["Lib/require/order!Lib/knockout.debug"],
+define(["Lib/require/order!Lib/knockout"],
 function () {
 	return ko;
 });

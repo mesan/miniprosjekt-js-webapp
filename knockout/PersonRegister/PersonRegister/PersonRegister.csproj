@@ -58,9 +58,11 @@
     <Content Include="Scripts\Lib\jquery-1.7.1.js" />
     <Content Include="Scripts\Lib\jquery-1.7.1.min.js" />
     <Content Include="Scripts\Lib\jquery-pubsub.js" />
+    <Content Include="Scripts\Lib\jquery.tmpl.js" />
     <Content Include="Scripts\Lib\knockout.debug.js" />
     <Content Include="Scripts\Lib\knockout.js" />
     <Content Include="Scripts\Lib\require\order.js" />
+    <Content Include="Scripts\Lib\require\require-query.tmpl.js" />
     <Content Include="Scripts\Lib\require\require-jQuery.js" />
     <Content Include="Scripts\Lib\require\require-knockout.js" />
     <Content Include="Scripts\Lib\require\require-underscore.js" />
@@ -73,6 +75,7 @@
     <Content Include="Scripts\Lib\upshot\upshot.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\Models\Person.js" />
+    <Content Include="Scripts\Repositories\PersonRepository.js" />
     <Content Include="Scripts\ViewModels\PersonViewModel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
