@@ -8,10 +8,20 @@
 
         self.getAll = function (callback) {
             api.getAll(callback);
+            
         }
 
         self.update = function (person, callback) {
+
             api.update(person, callback);
+
+        }
+
+
+        self.remove = function (person, callback) {
+
+            api.remove(person, callback);
+
         }
 
         return self;

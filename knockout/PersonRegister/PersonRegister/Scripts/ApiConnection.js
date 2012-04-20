@@ -13,8 +13,14 @@
         }
 
         self.update = function (entity, callback) {
-            $.post(url, entity, callback);
+            //$.post(url, entity, callback);
+            $.ajax({type:'put',data: entity, url: url}).done(callback);
         }
+
+        self.remove = function (entity, callback) {
+            $.ajax({ type: 'delete', data: entity, url: url }).done(callback);
+        }
+
 
         return self;
 
