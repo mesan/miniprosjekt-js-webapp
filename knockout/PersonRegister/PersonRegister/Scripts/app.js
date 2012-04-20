@@ -8,10 +8,6 @@
 ], function ($, _, Template, ko, Sammy, PersonViewModel) {
 
 
-
-
-
-
     function init() {
         try {
 
@@ -21,19 +17,18 @@
             viewModel.loadPersons();
 
 
-                    Sammy(function () {
-                        this.get('#', function () {
-                            viewModel.loadPersons();
-                        });
+            Sammy(function () {
+                this.get('#', function () {
+                    viewModel.index();
+                    viewModel.loadPersons();
+                });
 
-                        this.get('#new', function () {
-                            viewModel.chosenFolderId(this.params.folder);
-                            viewModel.chosenFolderData(null);
-                            $.get("/mail", { mailId: this.params.mailId }, viewModel.chosenMailData);
-                        });
+                this.get('#new', function () {
+                    viewModel.newPerson();
+                });
 
-                        this.get('', function () { this.app.runRoute('get', '#Inbox') });
-                    }).run();
+                this.get('', function () { this.app.runRoute('get', '#') });
+            }).run();
 
 
         }

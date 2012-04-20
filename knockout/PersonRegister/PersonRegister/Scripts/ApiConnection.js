@@ -17,6 +17,11 @@
             $.ajax({type:'put',data: entity, url: url}).done(callback);
         }
 
+        self.add = function (entity, callback) {
+            $.post(url, entity, callback);
+           
+        }
+
         self.remove = function (entity, callback) {
             $.ajax({ type: 'delete', data: entity, url: url }).done(callback);
         }

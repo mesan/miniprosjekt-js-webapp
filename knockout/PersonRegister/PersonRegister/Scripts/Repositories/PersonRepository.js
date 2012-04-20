@@ -17,7 +17,11 @@
 
         }
 
+        self.add = function (person, callback) {
 
+            api.add(person, callback);
+
+        }
         self.remove = function (person, callback) {
 
             api.remove(person, callback);

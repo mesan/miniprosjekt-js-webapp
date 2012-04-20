@@ -1,10 +1,10 @@
-﻿define(["jQuery", "Knockout", "Repositories/PersonRepository"],
-function ($, ko, PersonRepository) {
+﻿define(["jQuery", "Knockout", "Models/Person", "Repositories/PersonRepository"],
+function ($, ko, Person, PersonRepository) {
 
     function PersonViewModel() {
 
         var self = this;
-        self.personer = { id: 0, name: "nn", age: "0" };
+        //self.personer = { id: 0, name: "nn", age: "0" };
 
         var personRepo = new PersonRepository();
 
@@ -25,10 +25,11 @@ function ($, ko, PersonRepository) {
         self.templateName = function (item) { return selectedTemplate() };
 
         self.state = ko.observable("index");
-        self.changestate = function (item) { self.state(item); };
+        self.changeState = function (item) { self.state(item); };
 
-        self.newperson = function () { self.changestate("new"); };
+        self.newPerson = function () { self.changeState("new"); };
 
+        self.index = function () { self.changeState("index"); };
 
         self.updatePerson = function () {
             personRepo.update(this, function () { loadPersons() });
@@ -39,6 +40,13 @@ function ($, ko, PersonRepository) {
             personRepo.remove(this, function () { loadPersons() });
         };
 
+
+        self.addPerson = function (form) {
+            var nPerson = new Person();
+            nPerson.name = form.ibname.value;
+            nPerson.age = form.ibage.value;
+            personRepo.add(nPerson, function () { index(); loadPersons(); });
+        };
 
         self.loadPersons = loadPersons;
 
