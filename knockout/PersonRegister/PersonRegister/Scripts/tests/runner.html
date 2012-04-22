@@ -26,7 +26,8 @@ require.config({
 	    "Underscore": "lib/require/require-underscore",
         "Knockout":   "lib/require/require-knockout",
         "Upshot":     "lib/require/require-upshot",
-        "Template":   "lib/require/require-query.tmpl",
+        "Template": "lib/require/require-query.tmpl",
+        "Sammy":      "lib/require/require-sammy",
         "sinon":      "lib/require/require-sinon"
 	    }
       });
@@ -40,6 +41,7 @@ require([
   "lib/require/order!lib/jquery.tmpl",
   "lib/require/order!lib/knockout",
     "lib/require/order!lib/knockout",
+	"lib/require/order!lib/sammy-latest.min",
 	"lib/require/order!tests/libs/sinon-1.3.4",
     '../tests/PersonViewModel.spec.js',
 	'../tests/ApiConnection.spec.js'

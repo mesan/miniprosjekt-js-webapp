@@ -10,19 +10,23 @@
 			this.server.restore();
 		});
 
-		it("should get all as json", function () {
-			var url = "min/tilfeldige/url";
-
-			var apiConnection = new ApiConnection(url);
+		it("should call callback with json result", function () {
+			// Arrange
+			var url = "min/tilfeldige/url",
+				apiConnection = new ApiConnection(url),
+				callback = sinon.spy();
 
 			this.server.respondWith("GET", url,
                                  [200, { "Content-Type": "application/json" } ,
                                  '[{ "id": 12, "name": "Gustav" }]']);
 
-			var callback = sinon.spy();
-			apiConnection.getAll(url, callback);
+			
+			
+			// Act
+			apiConnection.getAll(callback);
 			this.server.respond();
-			debugger;
+			
+			// Assert
 			expect(callback.calledWith([{ id: 12, name: "Gustav"}])).toBeTruthy();
 		});
 	});
