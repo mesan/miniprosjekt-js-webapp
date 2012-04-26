@@ -56,8 +56,8 @@
     {{#each PersonApp.personController}}
     <tr>
       <td>
-        <a href="#edit/{{id}}">endre</a>
       </td>
+        <a href="#" {{action "edit"}}>Edit</a>
       <td>
        {{navn}}
       </td>
@@ -71,7 +71,13 @@
   </table>
   <div><a href="#add">LeggN til ny person</a></div>
 
-
+  før
+  <ul>
+    {{#each people}}
+    <li>Hello, {{name}}!</li>
+    {{/each}}
+  </ul>
+  etter
 </script>
 
 </body>

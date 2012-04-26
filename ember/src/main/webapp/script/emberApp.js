@@ -51,3 +51,8 @@ setTimeout(function() {
   person1.set("navn", "apen svinger seg i treet");
   person2.set("alder", 1000);
 }, 5000);
+
+PersonApp.ListeView = Ember.View.extend({
+  people: [ { name: 'Yehuda' },
+    { name: 'Tom' } ]
+});
