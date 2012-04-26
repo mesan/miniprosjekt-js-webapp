@@ -14,6 +14,7 @@
     <AssemblyName>PersonRegister</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
+    <JSLintSkip>\Scripts\</JSLintSkip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,17 +52,34 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Index.html" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\ApiConnection.js" />
     <Content Include="Scripts\Lib\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\Lib\jquery-1.7.1.js" />
     <Content Include="Scripts\Lib\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\Lib\jquery-pubsub.js" />
+    <Content Include="Scripts\Lib\jquery.tmpl.js" />
     <Content Include="Scripts\Lib\knockout.debug.js" />
     <Content Include="Scripts\Lib\knockout.js" />
-    <Content Include="Scripts\Lib\require.js" />
-    <Content Include="Scripts\Lib\upshot.compat.knockout.js" />
-    <Content Include="Scripts\Lib\upshot.js" />
-    <Content Include="Scripts\Lib\upshot.knockout.extensions.js" />
-    <Content Include="Scripts\Lib\upshot.min.js" />
+    <Content Include="Scripts\Lib\require\order.js" />
+    <Content Include="Scripts\Lib\require\require-query.tmpl.js" />
+    <Content Include="Scripts\Lib\require\require-jQuery.js" />
+    <Content Include="Scripts\Lib\require\require-knockout.js" />
+    <Content Include="Scripts\Lib\require\require-sammy.js" />
+    <Content Include="Scripts\Lib\require\require-underscore.js" />
+    <Content Include="Scripts\Lib\require\require-upshot.js" />
+    <Content Include="Scripts\Lib\require\require.js" />
+    <Content Include="Scripts\Lib\sammy-latest.min.js" />
+    <Content Include="Scripts\Lib\underscore.js" />
+    <Content Include="Scripts\Lib\upshot\upshot.compat.knockout.js" />
+    <Content Include="Scripts\Lib\upshot\upshot.js" />
+    <Content Include="Scripts\Lib\upshot\upshot.knockout.extensions.js" />
+    <Content Include="Scripts\Lib\upshot\upshot.min.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\Models\Person.js" />
+    <Content Include="Scripts\Repositories\PersonRepository.js" />
+    <Content Include="Scripts\ViewModels\PersonViewModel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

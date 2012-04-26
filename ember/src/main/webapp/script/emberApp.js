@@ -1,15 +1,49 @@
-EmberApp = Ember.Application.create();
+PersonApp = Ember.Application.create();
 
-EmberApp.Person = Ember.Object.extend({
+PersonApp.Person = Ember.Object.extend({
   navn : "",
   alder : 0
 });
 
-var person1 = EmberApp.Person.create({navn: "Gunnar", alder: 6});
-var person2 = EmberApp.Person.create({navn: "Lars", alder: 4});
+PersonApp.PersonService = Ember.Object.extend({
+  url: "",
 
-EmberApp.personController = Ember.ArrayController.create({
-  content : [person1, person2]
+  hentAlle : function(callback) {
+    jQuery.getJSON(this.url, function(jsonpersoner) {
+      var personer =[];
+      jQuery.each(jsonpersoner, function(indeks, jsonperson){
+        personer.push( PersonApp.Person.create({
+          navn: jsonperson.name,
+          alder: jsonperson.age
+        }))
+      })
+
+      callback(personer);
+    });
+  }
+
+});
+
+var person1 = PersonApp.Person.create({navn: "Gunnar", alder: 6});
+var person2 = PersonApp.Person.create({navn: "Lars", alder: 4});
+
+PersonApp.personController = Ember.ArrayController.create({
+  content : [],
+  self : null,
+
+  init: function() {
+    self = this;
+    self.fyllModell();
+  },
+
+  settPersoner : function(personer) {
+    self.set('content', personer);
+  },
+
+  fyllModell : function() {
+    var personService = PersonApp.PersonService.create({url: "http://restapi.apphb.com/api/person"});
+    personService.hentAlle(self.settPersoner);
+  }
 });
 
 

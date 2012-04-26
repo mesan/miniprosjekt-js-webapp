@@ -1,11 +1,111 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <!-- <script src="Scripts/Lib/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/Lib/knockout.js" type="text/javascript"></script>
+    <script src="Scripts/Models/Person.js" type="text/javascript"></script>
+    <script src="Scripts/Repositories/PersonRepository.js" type="text/javascript"></script>
+    <script src="Scripts/ViewModels/PersonViewModel.js" type="text/javascript"></script>
+    <script src="Scripts/ApiConnection.js" type="text/javascript"></script>
+    <script src="Scripts/app.js" type="text/javascript"></script>
+    <script src="Scripts/main.js" type="text/javascript"></script>-->
+    <!-- <script  type="text/javascript">
+     $(function () {
+         init();
+     });
+
+ </script>-->
+    <script data-main="Scripts/main" src="Scripts/Lib/require/require.js" language="javascript"
+        type="text/javascript"></script>
     <title>Personregister</title>
+    <style type="text/css">
+        table thead th
+        {
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
+    <div>
+        State er : <span data-bind="text: state"></span>
+        <br />
+        <a href="#new" >Ny person</a><br />
+          <a href="#" >vanlig</a>
+    </div>
+    <div id="person" data-bind="if: personer, visible: state()=='index'">
+        Templatename is : <span data-bind="{text: templateName()}"></span>
+        <hr />
+        <hr />
+        <table style="width: 600px">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Navn
+                    </th>
+                    <th>
+                        Alder
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="template: { name: templateName, foreach: personer }">
+            </tbody>
+        </table>
+    </div>
+    <div id="newperson" data-bind="visible: state()=='new'">
+    <form data-bind="submit: addPerson">
+   navn: <input type="text" id="ibname"/><br />
+       alder: <input type="text" id="ibage"/>
+    <button type="submit">Submit</button>
+</form>
+      
+      
+    </div>
+    <script type="text/html" id="personList">
+
+    <tr>
+    
+        <td><input data-bind="value: id" /></td>
+        <td><input data-bind="value: name" /></td>
+        <td><input data-bind="value: age" /></td>
+        <td><a href="#" data-bind="click: $parent.updatePerson">Lagre</a></td>
+         <td><a href="#" data-bind="click: $parent.deletePerson">Slett</a></td>
+    </tr>
 
 
 
+</script>
+    <!--<script type="text/html" id="personList">
+{{each personer}}
+<tr>
+            {{if $parent.selectedPersonId == ${id}}}
+            
+                <td><input type="text" value="${name}" /></td>
+                <td><input type="text" value="${age}" /></td>
+                <td><a href="#" data-bind="click: $parent.updatePerson">Lagre</a></td>
+                
+            {{else}}
+
+            <td>${name}</td>
+            <td>${age}</td>
+            <td><a href="#edit/${id}" data-bind="click: function() { $parent.selectedPersonId = ${id} }">Endre</a></td>
+
+            {{/if}}
+</tr>
+{{/each}}
+</script>-->
+    <!--<script type="text/html" id="editPerson">
+{{each personer}}
+        <tr>
+            <td><input type="text" value="${name}" /></td>
+            <td><input type="text" value="${age}" /></td>
+            <td><a href="#" data-bind="click: $parent.updatePerson">Lagre</a></td>
+        </tr>
+{{/each}}
+</script>-->
 </body>
 </html>
