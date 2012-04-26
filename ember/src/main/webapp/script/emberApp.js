@@ -56,3 +56,51 @@ PersonApp.ListeView = Ember.View.extend({
   people: [ { name: 'Yehuda' },
     { name: 'Tom' } ]
 });
+
+
+/**
+ * Url håndtering.
+ *
+ * Ulike sider:
+ * - index.html#posts
+ * - index.html#posts/1
+ * - index.html#projects
+ *
+ * Kan også bruke html5 url'er, men det er litt mer knotete.
+ */
+
+PersonApp.postsView = Ember.View.create({
+  template:Ember.Handlebars.compile("<h1>POSTS</h1><p>State: {{PersonApp.routeManager.currentState.path}}</p>")
+});
+
+PersonApp.projectsView = Ember.View.create({
+  template:Ember.Handlebars.compile("<h1>PROJECTS</h1><p>State: {{PersonApp.routeManager.currentState.path}}</p>")
+});
+
+PersonApp.routeManager = Ember.RouteManager.create({
+
+  posts: Ember.ViewState.create({
+    route: 'posts', // defines a static route
+    view: PersonApp.postsView,
+
+    index: Ember.State.create({}), // default state
+
+    show: Ember.State.create({
+      route: ':id', // defines a nested dynamic route
+      enter: function(stateManager, transition) {
+        this._super(stateManager, transition);
+        var params = stateManager.get('params');
+        var postId = params.id;
+        // do something here with postId
+      }
+    })
+  }),
+
+  projects: Ember.ViewState.create({
+    route: 'projects',
+    view: PersonApp.projectsView
+  })
+
+});
+
+PersonApp.routeManager.start();
