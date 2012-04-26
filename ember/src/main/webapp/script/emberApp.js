@@ -70,7 +70,7 @@ PersonApp.ListeView = Ember.View.extend({
  */
 
 PersonApp.postsView = Ember.View.create({
-  template:Ember.Handlebars.compile("<h1>POSTS</h1><p>State: {{PersonApp.routeManager.currentState.path}}</p>")
+  template:Ember.Handlebars.compile("<h1>POSTS</h1><p>State: {{PersonApp.routeManager.params.id}}</p>")
 });
 
 PersonApp.projectsView = Ember.View.create({
