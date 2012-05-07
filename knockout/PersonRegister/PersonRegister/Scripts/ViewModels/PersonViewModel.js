@@ -1,57 +1,50 @@
 ﻿define(["jQuery", "Knockout", "Models/Person", "Repositories/PersonRepository"],
 function ($, ko, Person, PersonRepository) {
 
-    function PersonViewModel() {
+	function PersonViewModel() {
 
-        var self = this;
-        //self.personer = { id: 0, name: "nn", age: "0" };
+		var self = this;
 
-        var personRepo = new PersonRepository();
+		var personRepo = new PersonRepository();
 
+		this.personer = ko.observableArray();
 
+		this.loadPersons = function () {
+			personRepo.getAll(function (result) {
 
-        self.personer = ko.observableArray();
+				$.each(result, function () {
+					this.edit = ko.observable(false);
+				});
 
+				self.personer(result);
+			});
+		};
 
-        var loadPersons = function () {
-            personRepo.getAll(function (result) {
-                self.personer(result);
-            });
-        };
+		this.state = ko.observable("index");
 
+		this.changeState = function (item) { self.state(item); };
 
-        var state = "view";
-        var selectedTemplate = ko.observable("personList");
-        self.templateName = function (item) { return selectedTemplate() };
+		this.newPerson = function () { self.changeState("new"); };
 
-        self.state = ko.observable("index");
-        self.changeState = function (item) { self.state(item); };
+		this.index = function () { self.changeState("index"); };
 
-        self.newPerson = function () { self.changeState("new"); };
+		this.editPerson = function () { this.edit(true); };
 
-        self.index = function () { self.changeState("index"); };
+		this.updatePerson = function () {
+			personRepo.update(this, function () { loadPersons(); });
+		};
 
-        self.updatePerson = function () {
-            personRepo.update(this, function () { loadPersons() });
-        };
+		this.deletePerson = function () {
+			personRepo.remove(this, function () { loadPersons(); });
+		};
 
+		this.addPerson = function (form) {
+			var nPerson = new Person();
+			nPerson.name = form.ibname.value;
+			nPerson.age = form.ibage.value;
+			personRepo.add(nPerson, function () { index(); loadPersons(); });
+		};
+	}
 
-        self.deletePerson = function () {
-            personRepo.remove(this, function () { loadPersons() });
-        };
-
-
-        self.addPerson = function (form) {
-            var nPerson = new Person();
-            nPerson.name = form.ibname.value;
-            nPerson.age = form.ibage.value;
-            personRepo.add(nPerson, function () { index(); loadPersons(); });
-        };
-
-        self.loadPersons = loadPersons;
-
-    }
-
-    return PersonViewModel;
-
+	return PersonViewModel;
 });
