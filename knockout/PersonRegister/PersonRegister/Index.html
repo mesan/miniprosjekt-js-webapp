@@ -29,7 +29,8 @@
     <div>
         State er : <span data-bind="text: state"></span>
         <br />
-        <a href="#" data-bind="click: newperson">Ny person</a>
+        <a href="#new" >Ny person</a><br />
+          <a href="#" >vanlig</a>
     </div>
     <div id="person" data-bind="if: personer, visible: state()=='index'">
         Templatename is : <span data-bind="{text: templateName()}"></span>
@@ -56,7 +57,13 @@
         </table>
     </div>
     <div id="newperson" data-bind="visible: state()=='new'">
-        ny person
+    <form data-bind="submit: addPerson">
+   navn: <input type="text" id="ibname"/><br />
+       alder: <input type="text" id="ibage"/>
+    <button type="submit">Submit</button>
+</form>
+      
+      
     </div>
     <script type="text/html" id="personList">
 

@@ -6,13 +6,16 @@
   <title>Ember Javascript som Webbapplikasjon</title>
   <script src="script/lib/jquery-1.7.2.js"></script>
   <script src="script/lib/ember-0.9.5.js"></script>
+  <script src="script/lib/route_manager.js"></script>
   <script src="script/emberApp.js"></script>
 </head>
 <body>
 
 <script type="text/x-handlebars">
 
+  <h1>
   collection
+  </h1>
   <table>
     <thead>
     <tr>
@@ -22,7 +25,7 @@
     </thead>
 
     <tbody>
-  {{#collection contentBinding="PersonApp.personController"}}
+  {{#collection contentBinding="PersonApp.personlisteKontroller"}}
     <tr>
       <td>
         {{content.navn}}
@@ -38,19 +41,27 @@
 
 
 <hr>
+  <h1>
   each
+  </h1>
   <table>
     <thead>
     <tr>
+      <th>Endre</th>
       <th>Navn</th>
       <th>Alder</th>
     </tr>
     </thead>
 
     <tbody>
-    {{#each PersonApp.personController}}
+    {{#each PersonApp.personlisteKontroller}}
     <tr>
       <td>
+      </td>
+      {{#view PersonApp.EditerPersonView}}
+      Editer person
+      {{/view}}
+            <td>
        {{navn}}
       </td>
       <td>
@@ -61,7 +72,20 @@
     </tbody>
 
   </table>
+  {{#view PersonApp.LeggTilPersonView}}
+  Legg til ny person
+  {{/view}}
 
+  Viser person fra view. Klarer ikke koble dette til kontroller....
+  {{#view PersonApp.PersonlisteView}}
+   {{#each personer}}
+     <li>Hello, {{name}}!</li>
+   {{/each}}
+  {{/view}}
+
+  Henter en person via rett fra kontroller (editer url: 'index.html#posts/1' for å hente person med id = 1):
+  <p><strong>Navn:</strong> {{PersonApp.personKontroller.content.navn}}
+  <p/><strong>Alder</strong> {{PersonApp.personKontroller.content.alder}}
 
 </script>
 
