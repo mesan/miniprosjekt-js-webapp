@@ -1,5 +1,5 @@
 ﻿define(["Underscore", "Knockout", "Models/Person", "Repositories/PersonRepository"],
-function ($, ko, Person, PersonRepository) {
+function (_, ko, Person, PersonRepository) {
 
 	function PersonViewModel() {
 
