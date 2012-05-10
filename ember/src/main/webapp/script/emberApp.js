@@ -1,3 +1,5 @@
+/*global Ember,jQuery,alert*/
+
 /********
  * Domene
  ********/
@@ -16,31 +18,31 @@ PersonApp.Person = Ember.Object.extend({
 PersonApp.PersonService = Ember.Object.extend({
   url: "",
 
-  hentAlle : function(callback) {
-    jQuery.getJSON(this.url, function(jsonpersoner) {
+  hentAlle : function (callback) {
+    jQuery.getJSON(this.url, function (jsonpersoner) {
       var personer = [];
-      jQuery.each(jsonpersoner, function(indeks, jsonperson){
-        personer.push( PersonApp.Person.create({
+      jQuery.each(jsonpersoner, function (indeks, jsonperson) {
+        personer.push(PersonApp.Person.create({
           navn: jsonperson.name,
           alder: jsonperson.age
-        }))
-      })
+        }));
+      });
 
       callback(personer);
     });
   },
 
-  hentPerson : function(callback, id) {
-    jQuery.getJSON(this.url, function(jsonpersoner) {
+  hentPerson : function (callback, id) {
+    jQuery.getJSON(this.url, function (jsonpersoner) {
       var person = {};
-      jQuery.each(jsonpersoner, function(indeks, jsonperson){
+      jQuery.each(jsonpersoner, function (indeks, jsonperson) {
         if (jsonperson.id == id) {
           person = PersonApp.Person.create({
             navn: jsonperson.name,
             alder: jsonperson.age
-          })
+          });
         }
-      })
+      });
       callback(person);
     });
   }
@@ -55,16 +57,16 @@ PersonApp.personlisteKontroller = Ember.ArrayController.create({
   content : [],
   self : null,
 
-  init: function() {
+  init: function () {
     self = this;
     self.fyllModell();
   },
 
-  settPersoner : function(personer) {
+  settPersoner : function (personer) {
     self.set('content', personer);
   },
 
-  fyllModell : function() {
+  fyllModell : function () {
     var personService = PersonApp.PersonService.create({url: "http://restapi.apphb.com/api/person"});
     personService.hentAlle(self.settPersoner);
   }
@@ -74,15 +76,15 @@ PersonApp.personKontroller = Ember.Object.create({
   content : {},
   self : null,
 
-  init: function() {
+  init: function () {
     self = this;
   },
 
-  settPerson : function(person) {
+  settPerson : function (person) {
     self.set('content', person);
   },
 
-  fyllModell : function(id) {
+  fyllModell : function (id) {
     var personService = PersonApp.PersonService.create({url: "http://restapi.apphb.com/api/person"});
     personService.hentPerson(self.settPerson, id);
   }
@@ -113,13 +115,13 @@ PersonApp.PersonlisteView = Ember.View.extend({
 //});
 
 PersonApp.LeggTilPersonView = Ember.View.extend({
-  click: function(evt) {
+  click: function (evt) {
     alert("Legger til person...");
   }
 });
 
 PersonApp.EditerPersonView = Ember.View.extend({
-  click: function(evt) {
+  click: function (evt) {
     alert("Editerer person...");
   }
 });
@@ -137,11 +139,11 @@ PersonApp.EditerPersonView = Ember.View.extend({
  */
 
 PersonApp.postsView = Ember.View.create({
-  template:Ember.Handlebars.compile("<h1>POSTS</h1><p>State: {{PersonApp.routeManager.params.id}}</p>")
+  template: Ember.Handlebars.compile("<h1>POSTS</h1><p>State: {{PersonApp.routeManager.params.id}}</p>")
 });
 
 PersonApp.projectsView = Ember.View.create({
-  template:Ember.Handlebars.compile("<h1>PROJECTS</h1><p>State: {{PersonApp.routeManager.currentState.path}}</p>")
+  template: Ember.Handlebars.compile("<h1>PROJECTS</h1><p>State: {{PersonApp.routeManager.currentState.path}}</p>")
 });
 
 PersonApp.routeManager = Ember.RouteManager.create({
@@ -154,7 +156,7 @@ PersonApp.routeManager = Ember.RouteManager.create({
 
     show: Ember.State.create({
       route: ':id', // defines a nested dynamic route
-      enter: function(stateManager, transition) {
+      enter: function (stateManager, transition) {
         this._super(stateManager, transition);
         var params = stateManager.get('params');
         var postId = params.id;
