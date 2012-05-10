@@ -1,5 +1,5 @@
-﻿define(["jQuery", "Knockout", "Models/Person", "Repositories/PersonRepository"],
-function ($, ko, Person, PersonRepository) {
+﻿define(["Underscore", "Knockout", "Models/Person", "Repositories/PersonRepository"],
+function (_, ko, Person, PersonRepository) {
 
 	function PersonViewModel() {
 
@@ -10,8 +10,8 @@ function ($, ko, Person, PersonRepository) {
 		function loadPersons() {
 			personRepo.getAll(function (result) {
 
-				$.each(result, function () {
-					this.edit = ko.observable(false);
+				_.each(result, function (person) {
+					person.edit = ko.observable(false);
 				});
 
 				personer(result);

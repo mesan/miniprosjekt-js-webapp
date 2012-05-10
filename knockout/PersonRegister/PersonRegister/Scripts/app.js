@@ -1,45 +1,43 @@
 ﻿define([
     "jQuery",
-    "Underscore",
-    "Template",
     "Knockout",
     "Sammy",
     "ViewModels/PersonViewModel"
-], function ($, _, Template, ko, Sammy, PersonViewModel) {
+], function ($, ko, Sammy, PersonViewModel) {
 
 
-    function init() {
-        try {
+	function init() {
+		try {
 
-            var viewModel = new PersonViewModel();
+			var viewModel = new PersonViewModel();
 
-            ko.applyBindings(viewModel);
-            viewModel.loadPersons();
-
-
-            Sammy(function () {
-                this.get('#', function () {
-                    viewModel.index();
-                    viewModel.loadPersons();
-                });
-
-                this.get('#new', function () {
-                    viewModel.newPerson();
-                });
-
-                this.get('', function () { this.app.runRoute('get', '#') });
-            }).run();
+			ko.applyBindings(viewModel);
+			viewModel.loadPersons();
 
 
-        }
-        catch (err) {
-            alert("feil i app! " + err);
-        }
-    }
+			Sammy(function () {
+				this.get('#', function () {
+					viewModel.index();
+					viewModel.loadPersons();
+				});
 
-    return {
-        init: init
-    };
+				this.get('#new', function () {
+					viewModel.newPerson();
+				});
+
+				this.get('', function () { this.app.runRoute('get', '#'); });
+			}).run();
+
+
+		}
+		catch (err) {
+			alert("feil i app! " + err);
+		}
+	}
+
+	return {
+		init: init
+	};
 });
 
 

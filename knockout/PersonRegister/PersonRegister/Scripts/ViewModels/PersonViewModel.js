@@ -1,4 +1,4 @@
-﻿define(["jQuery", "Knockout", "Models/Person", "Repositories/PersonRepository"],
+﻿define(["Underscore", "Knockout", "Models/Person", "Repositories/PersonRepository"],
 function ($, ko, Person, PersonRepository) {
 
 	function PersonViewModel() {
@@ -12,8 +12,8 @@ function ($, ko, Person, PersonRepository) {
 		this.loadPersons = function () {
 			personRepo.getAll(function (result) {
 
-				$.each(result, function () {
-					this.edit = ko.observable(false);
+				_.each(result, function (person) {
+					person.edit = ko.observable(false);
 				});
 
 				self.personer(result);
@@ -31,18 +31,18 @@ function ($, ko, Person, PersonRepository) {
 		this.editPerson = function () { this.edit(true); };
 
 		this.updatePerson = function () {
-			personRepo.update(this, function () { loadPersons(); });
+			personRepo.update(this, function () { self.loadPersons(); });
 		};
 
 		this.deletePerson = function () {
-			personRepo.remove(this, function () { loadPersons(); });
+			personRepo.remove(this, function () { self.loadPersons(); });
 		};
 
 		this.addPerson = function (form) {
 			var nPerson = new Person();
 			nPerson.name = form.ibname.value;
 			nPerson.age = form.ibage.value;
-			personRepo.add(nPerson, function () { index(); loadPersons(); });
+			personRepo.add(nPerson, function () { self.index(); self.loadPersons(); });
 		};
 	}
 

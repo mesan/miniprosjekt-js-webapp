@@ -56,19 +56,13 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\ApiConnection.js" />
     <Content Include="Scripts\Lib\jquery-1.7.1-vsdoc.js" />
-    <Content Include="Scripts\Lib\jquery-1.7.1.js" />
     <Content Include="Scripts\Lib\jquery-1.7.1.min.js" />
     <Content Include="Scripts\Lib\jquery-pubsub.js" />
-    <Content Include="Scripts\Lib\jquery.tmpl.js" />
-    <Content Include="Scripts\Lib\knockout.debug.js" />
     <Content Include="Scripts\Lib\knockout.js" />
     <Content Include="Scripts\Lib\require\order.js" />
-    <Content Include="Scripts\Lib\require\require-query.tmpl.js" />
     <Content Include="Scripts\Lib\require\require-jQuery.js" />
-    <Content Include="Scripts\Lib\require\require-knockout.js" />
     <Content Include="Scripts\Lib\require\require-sammy.js" />
     <Content Include="Scripts\Lib\require\require-underscore.js" />
-    <Content Include="Scripts\Lib\require\require-upshot.js" />
     <Content Include="Scripts\Lib\require\require.js" />
     <Content Include="Scripts\Lib\sammy-latest.min.js" />
     <Content Include="Scripts\Lib\underscore.js" />
@@ -88,6 +82,7 @@
     <Content Include="Scripts\tests\PersonViewModel.spec.js" />
     <Content Include="Scripts\tests\runner.html" />
     <Content Include="Scripts\ViewModels\PersonViewModel.js" />
+    <Content Include="Scripts\ViewModels\PersonViewModel2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
