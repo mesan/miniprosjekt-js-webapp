@@ -10,18 +10,15 @@
 			this.server.restore();
 		});
 
-		it("should call callback with json result", function () {
+		it("getAll should call callback with json result", function () {
 			// Arrange
 			var url = "min/tilfeldige/url",
 				apiConnection = new ApiConnection(url),
 				callback = sinon.spy();
 
 			this.server.respondWith("GET", url,
-                                 [200, { "Content-Type": "application/json" } ,
+                                 [200, { "Content-Type": "application/json" },
                                  '[{ "id": 12, "name": "Gustav" }]']);
-
-			
-			
 			// Act
 			apiConnection.getAll(callback);
 			this.server.respond();

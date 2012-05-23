@@ -1,9 +1,10 @@
-﻿define(["Underscore", "Knockout", "Models/Person", "Repositories/PersonRepository"],
+﻿/* globals define */
+define(["Underscore", "Knockout", "Models/Person", "Repositories/PersonRepository"],
 function (_, ko, Person, PersonRepository) {
 
-	function PersonViewModel() {
+	function PersonViewModel(_personRepo) {
 
-		var personRepo = new PersonRepository(),
+		var personRepo = _personRepo || new PersonRepository(),
 			personer = ko.observableArray(),
 		  state = ko.observable("index");
 

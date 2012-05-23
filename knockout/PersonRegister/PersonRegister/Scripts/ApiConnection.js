@@ -1,7 +1,6 @@
-﻿define(["jQuery"], function ($) {
-
+﻿/*global define */
+define(["jQuery"], function ($) {
 	function ApiConnection(url) {
-
 		var self = this;
 
 		self.getAll = function (callback) {
@@ -12,8 +11,9 @@
 			$.getJSON(url + '/' + id).done(callback);
 		};
 
-		self.update = function (entity, callback) {
-			$.ajax({ type: 'put', data: entity, url: url }).done(callback);
+		// Eksempel med deferred
+		self.update = function (entity) {
+			return $.ajax({ type: 'put', data: entity, url: url });
 		};
 
 		self.add = function (entity, callback) {
@@ -21,13 +21,11 @@
 
 		};
 
-		self.remove = function(entity, callback) {
+		self.remove = function (entity, callback) {
 			$.ajax({ type: 'delete', data: entity, url: url }).done(callback);
 		};
-
-
+		
 		return self;
-
 	}
 
 	return ApiConnection;

@@ -66,10 +66,6 @@
     <Content Include="Scripts\Lib\require\require.js" />
     <Content Include="Scripts\Lib\sammy-latest.min.js" />
     <Content Include="Scripts\Lib\underscore.js" />
-    <Content Include="Scripts\Lib\upshot\upshot.compat.knockout.js" />
-    <Content Include="Scripts\Lib\upshot\upshot.js" />
-    <Content Include="Scripts\Lib\upshot\upshot.knockout.extensions.js" />
-    <Content Include="Scripts\Lib\upshot\upshot.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\Models\Person.js" />
     <Content Include="Scripts\Repositories\PersonRepository.js" />

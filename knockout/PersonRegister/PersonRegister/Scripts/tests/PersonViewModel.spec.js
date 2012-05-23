@@ -2,16 +2,10 @@
 
 	describe("PersonViewModel", function () {
 
-		beforeEach(function () {
-			this.server = sinon.fakeServer.create();
-		});
-
-		afterEach(function () {
-			this.server.restore();
-		});
-
 		it("should have an updatePerson function", function () {
-			var personViewModel = new PersonViewModel();
+			var personRepoStub = sinon.stub();
+			var personViewModel = new PersonViewModel(personRepoStub);
+
 			expect(typeof (personViewModel.updatePerson)).toEqual("function");
 		});
 

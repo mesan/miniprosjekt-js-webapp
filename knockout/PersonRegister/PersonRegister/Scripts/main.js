@@ -1,3 +1,5 @@
+/*global require */
+
 require.config({
   paths: {
     "order":      "lib/require/order",
@@ -5,7 +7,6 @@ require.config({
 		"Underscore":	"lib/require/require-underscore",
     "Knockout":   "lib/knockout",
     "Sammy":      "lib/require/require-sammy"
-
 	}
 });
 
@@ -14,13 +15,13 @@ require([
   "lib/require/order!lib/jquery-1.7.1.min",
   "lib/require/order!lib/underscore",
   "lib/require/order!lib/jquery-pubsub",
-    "lib/require/order!lib/sammy-latest.min"
+  "lib/require/order!lib/sammy-latest.min"
 	],
     function (app) {
     	try {
     		app.init();
     	}
     	catch (err) {
-    		alert("feil i main! " + err);
+    		conole.log("feil i main! " + err);
     	}
     });

@@ -1,36 +1,30 @@
-﻿define(["ApiConnection", "Models/Person"], function (ApiConnection, Person) {
+﻿/*global define */
+define(["ApiConnection"], function (ApiConnection) {
+	function PersonRepository() {
 
-    function PersonRepository() {
+		var self = this,
+			api = new ApiConnection("http://restapi.apphb.com/api/person");
 
-        var self = this;
+		self.getAll = function (callback) {
+			api.getAll(callback);
+		};
 
-        var api = new ApiConnection("http://restapi.apphb.com/api/person");
+		// Eksempel med deferred
+		self.update = function (person) {
+			return api.update(person);
+		};
 
-        self.getAll = function (callback) {
-            api.getAll(callback);
-            
-        }
+		self.add = function (person, callback) {
+			api.add(person, callback);
+		};
 
-        self.update = function (person, callback) {
+		self.remove = function (person, callback) {
+			api.remove(person, callback);
+		};
 
-            api.update(person, callback);
+		return self;
+	}
 
-        }
-
-        self.add = function (person, callback) {
-
-            api.add(person, callback);
-
-        }
-        self.remove = function (person, callback) {
-
-            api.remove(person, callback);
-
-        }
-
-        return self;
-    }
-
-    return PersonRepository;
+	return PersonRepository;
 
 });
